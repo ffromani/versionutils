@@ -38,14 +38,14 @@ jobs:
 
     - name: fix build artifacts
       run: |
-        mv _output/skiprange skiprange-${{ env.RELEASE_VERSION }}-linux-amd64
+        mv _output/skiprange _output/skiprange-${{ env.RELEASE_VERSION }}-linux-amd64
 
     - name: compute signature
       run: |
-        pushd _output && sha256sum * >> ../SHA256SUMS && popd
+        pushd _output && sha256sum * >> ../SHA256SUMS && mv ../SHA256SUMS . && popd
 
     - name: create release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "SHA256SUMS,*-v*-linux-amd64"
+        artifacts: ")output/SHA256SUMS,_output/*-v*-linux-amd64"
         token: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
