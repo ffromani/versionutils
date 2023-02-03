@@ -26,7 +26,7 @@ var _ = g.Describe("skiprange", func() {
 			o.Expect(err).ToNot(o.HaveOccurred())
 
 			got := strings.TrimSpace(string(out))
-			expected := ">=4.10.0 <4.11.7"
+			expected := "'>=4.10.0 <4.11.7'"
 
 			o.Expect(got).To(o.Equal(expected))
 		})

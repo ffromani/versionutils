@@ -40,7 +40,7 @@ func main() {
 			fmt.Fprintf(os.Stderr, "error computing previous minor: %v\n", err)
 			os.Exit(2)
 		}
-		fmt.Printf(">=%s <%s\n", ret, arg)
+		fmt.Printf("'>=%s <%s'\n", ret, arg)
 	}
 }
 
