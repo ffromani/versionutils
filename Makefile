@@ -33,5 +33,5 @@ clean:
 
 .PHONY: test-e2e
 test-e2e: binaries
-	go test test/e2e/...
+	go test ./test/e2e/...
 
