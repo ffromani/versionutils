@@ -25,8 +25,10 @@ import (
 )
 
 func main() {
+	rawOutput := false
 	skewBack := 0
 	flag.IntVar(&skewBack, "skew-back", 1, "skew versions back")
+	flag.BoolVar(&rawOutput, "raw", false, "emit unquoted output")
 	flag.Parse()
 
 	if skewBack < 0 {
@@ -40,7 +42,11 @@ func main() {
 			fmt.Fprintf(os.Stderr, "error computing previous minor: %v\n", err)
 			os.Exit(2)
 		}
-		fmt.Printf("'>=%s <%s'\n", ret, arg)
+		if rawOutput {
+			fmt.Printf(">=%s <%s\n", ret, arg)
+		} else {
+			fmt.Printf("'>=%s <%s'\n", ret, arg)
+		}
 	}
 }
 
